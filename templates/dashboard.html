@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Circliful JS -->
+<script src="{% static 'js/circliful.min.js' %}"></script>
+<script src="{% static 'js/circliful.custom.js' %}"></script>
+<script src="{% static 'js/circliful.js' %}"></script>
+
+
+
+
+      <!-- Content wrapper start -->
+<div class="content-wrapper">
+  <!-- Row start -->
+      <div class="row gutters">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <!-- BEGIN .Custom-header -->
+            <header class="custom-banner" style="background-color: rgb(5, 199, 141);">
+              
+              <div class="row gutters">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                  
+                  <div class="welcome-msg">
+                    <div class="welcome-user-thumb"> <img src="{% static 'images/bt3.png' %}" alt='Retail Admin' /> </div>
+                    <div class="welcome-title">{{request.user.first_name}}</div>
+                    <!-- <div class="welcome-designation"> B.Tech - Computer Science and Engineering </div> -->
+                    <div class="welcome-email">{{request.user.email}} </div>
+                    <!-- <a href="profile.html" class="btn btn-danger btn-sm"></a> </div> -->
+                  </div>
+                </div>
+
+
+                
+               
+                  
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                  <div class="row gutters user-plans justify-content-center">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                      
+                      {% if high_chances %}
+                      {% for clg,score,id in high_chances  %}
+                      <div id="circle">			
+                        <script>
+                          circliful.newCircle({
+                          percent: 20,
+                          id: 'circle',
+                          type: 'simple',
+                          backgroundCircleWidth: 10,
+                          foregroundCircleWidth: 15,
+                        });
+                        </script>
+					  
+						          </div>
+
+
+                      <strong class="text"><a href="/college/{{id}}&{{score}}/">Harvard University</a> </strong> </div>
+                      <!-- <a href="/college/{{id}}&{{score}}/" class="btn btn-lg btn-warning mt-3">Details</a> -->
+                      {% endfor %}
+
+                    </div>
+               
+                  </div>
+                </div>
+
+
+              
+
+
+                <!-- <strong class="text-center  text-light text-underline">{{message}} Please fill the form, 
+                  <a href="{% url 'userform' %}"><u>Click Here</u></a></strong> -->
+
+
+                {% endif %}
+
+
+              </div>
+            </header>
+            <!-- END: .Custom-header -->
+          </div>
+  </div>
+</div>
+
+
+
+
+
+
+<style>
+@media only screen and (max-width: 600px){
+#topid {
+    background: linear-gradient(278deg, rgba(1, 22, 97, 1) 0%, rgba(0, 9, 41, 1) 100%);
+    height: 250px;
+}}
+</style>
+
+
+
+{% endblock content %}

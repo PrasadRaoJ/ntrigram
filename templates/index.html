@@ -1,0 +1,339 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>nTrigam</title>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row"> <img src="{% static 'images/topbgg.png' %} " width="100%" id="topid">
+    
+    <div class="container">
+
+
+      <div style="position:absolute; top:0">
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container"> <a class="navbar-brand" href="{% url 'home' %}">
+            <h2 width="auto" height="auto" class="d-inline-block align-top text-light">nTrigram</h2>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item"> <a href="{% url 'home' %}" class="nav-link active">Home</a> </li>
+        
+        {% if request.user.is_authenticated %}
+          <li class="nav-item"> <a href="{% url 'dashboard' %}" class="nav-link active">Dashboard</a> </li>
+          <li class="nav-item"> <a href="{% url 'userform' %} " class="nav-link ">My Data</a> </li>
+          <li class="nav-item"> <a href="{% url 'logout'%}" class="nav-link ">log out</a> </li>
+
+        </ul>
+
+        {% else %}
+        <li class="nav-item"> <a href="javascript:void(0); " class="nav-link " data-animation-in="lightSpeedIn" data-animation-out="animate-out" data-toggle="modal" data-target="#myModal">Signup / Login</a> </li>
+        
+        {% endif %}
+          
+       
+        
+        </div>
+        </div>
+      
+      </nav>
+        
+      
+      
+      {% if messages %}
+        
+      
+        
+      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+        {% for msg in messages %}
+        <p>{{msg}}</p> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {% endfor %}
+
+        <script type="text/javascript">
+            $('.alert').alert()
+        </script>
+
+      </div>
+      {% endif %}
+
+      
+
+
+      
+        <div class="container">
+          <div class="row"> <br>
+
+            <br>
+            <div class="col-lg-7">
+              <h1 class="slider-title d-sm-block">
+                <div class="BanTit">We Build Solution for the Future </div>
+                Enrol for an online exam and get jobs for the top 1000 recruiters in the top 100 MNC companies as software developers. If you do not qualify for the exam, we will provide you with corporate training and placement assistance based on your interest in technologies.&nbsp; </h1>
+              <br>
+              
+              {% if request.user.is_authenticated %}
+              <a href="{% url 'dashboard' %}" class="primary-btn mr-30" data-animation-in="lightSpeedIn">Let's Explore</a> </div>
+                {% else %}
+              <a href="javascript:void(0);" class="primary-btn mr-30" data-animation-in="lightSpeedIn" data-animation-out="animate-out" data-toggle="modal" data-target="#myModal">Let's get started</a> </div>
+              {% endif %}
+              <div class="col-lg-5 d-none d-sm-block"> <img src="{% static 'images/banner-img2.png' %}" width="100%" height="auto"> </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="about">
+    <div class="container">
+      <h2>Think About, Think nTrigam</h2>
+      <p> Navbars can utilize .navbar-toggler, .navbar-collapse, and .navbar-expand{-sm|-md|-lg|-xl} classes to change when their content collapses behind a button. In combination with other utilities, you can easily choose when to show or hide particular elements.
+        
+        For navbars that never collapse, add the .navbar-expand class on the navbar. For navbars that always collapse, don’t add any .navbar-expand class. </p>
+      <p> Navbars can utilize .navbar-toggler, .navbar-collapse, and .navbar-expand{-sm|-md|-lg|-xl} classes to change when their content collapses behind a button. In combination with other utilities, you can easily choose when to show or hide particular elements. </p>
+    </div>
+  </div>
+</div>
+
+<br>
+<section class="wf100 p80-p50 city-team">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title-style-1 text-center">
+          <h2>Our Products</h2>
+          <p>Form the beginning of a new paragraph marks a change of topic or a step in the development of an argument or of a story. In writing essays or other compositions to include.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="team-box">
+          <div class="team-thumb"> <a href="#"><i class="fas fa-link"></i></a> <img src="{% static 'images/cteam1.jpg' %}" alt=""></div>
+          <div class="team-txt">
+            <h5>College Finder</h5>
+            <p> Stephen Paul is very Compitent and very agile person who assist to Mayor of the City. Stephen Paul is very Compitent and very agile person who assist to Mayor of the City.
+              Stephen Paul is very Compitent and very agile person who assist to Mayor of the City.
+              Stephen Paul is very Compitent and very agile person who assist to Mayor of the City. </p>
+            <ul class="team-social">
+              
+              {% if request.user.is_authenticated %}
+              <li><a href="{% url 'dashboard' %}"><strong class="dep">View More</strong></a></li>
+
+              {% else %}
+              <li class="nav-item"> <a href="javascript:void(0); " class="nav-link " data-animation-in="lightSpeedIn" data-animation-out="animate-out" data-toggle="modal" data-target="#myModal"><strong class="dep">View More</strong></a> </li>
+
+              {% endif %}
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="team-box">
+          <div class="team-thumb"> <a href="#"><i class="fas fa-link"></i></a> <img src="{% static 'images/cteam2.jpg' %}" alt=""></div>
+          <div class="team-txt">
+            <h5>Lawsome</h5>
+            <!-- <strong class="dep">Health Director</strong> -->
+            <p> Stephen Paul is very Compitent and very agile person who assist to Mayor of the City. Stephen Paul is very Compitent and very agile person who assist to Mayor of the City.
+              Stephen Paul is very Compitent and very agile person who assist to Mayor of the City.
+              Stephen Paul is very Compitent and very agile person who assist to Mayor of the City. </p>
+            <ul class="team-social">
+              <li><a href="#"><strong class="dep">View More:</strong></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="testimonials-clean">
+  <div class="container">
+    <div class="intro">
+      <h2 class="text-center">Testimonials </h2>
+    </div>
+    <div class="row people">
+      <div class="col-md-6 col-lg-6 item">
+        <div class="box">
+          <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+        </div>
+        <div class="author"><img class="rounded-circle" src="{% static 'images/cteam1.jpg' %}">
+          <h5 class="name">Ben Johnson</h5>
+          <p class="title">CEO of Company Inc.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 item">
+        <div class="box">
+          <p class="description">Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et interdum justo suscipit id.</p>
+        </div>
+        <div class="author"><img class="rounded-circle" src="{% static 'images/cteam1.jpg' %}" alt="">
+          <h5 class="name">Carl Kent</h5>
+          <p class="title">Founder of Style Co.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3803.923054621759!2d78.36968856343177!3d17.558849731414213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8dcd69233473%3A0x9cf239f02da402b2!2sPraneeth%20Pranav%20leaf!5e0!3m2!1sen!2sin!4v1624107695965!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+
+<!-- Footer -->
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background:linear-gradient(278deg, rgba(1,22,97,1) 0%, rgba(0,9,41,1) 100%); color:#fff"> &copy; 2021 Copyright Reserved 
+    <a class="text-white" href="#"> @nTrigam.</a> &nbsp;
+    <a class="text-white" href="#">Email us: hello@nTrigram.com</a>
+    <a class="text-white" href="{% url 'home' %}">&nbsp; Home</a> 
+    
+    </div>
+  <!-- Copyright -->
+</footer>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog"> <br>
+  <br>
+  <br>
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="opacity: 1;position: absolute;right: -14px;top: -11px;z-index: 9999;"> <span aria-hidden="true"><img src="https://ethree.in/assets/images/close.png"></span> </button>
+      <div class="container register">
+        <div class="row">
+          <div class="col-md-3 register-left"> <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+            <h3 style="color:#fff;">Welcome to nTrigam</h3>
+            <p>You are 30 seconds away to find sutable University</p>
+          </div>
+          <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+              <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Sign Up</a> </li>
+              <li class="nav-item"> <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Login</a> </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              
+              <!-- Register Form -->
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3 class="register-heading">Sign Up</h3>
+                
+                <form action="{% url 'register' %}" method='post'> {% csrf_token %}
+                  <div class="row register-form">
+                    
+                    
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="name" id="uname" placeholder="Name*"  required/>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="email" class="form-control" name="email" id="uname" placeholder="Email Id*" required/>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="password" class="form-control" name="pwd" id="password" placeholder="Enter Password*" required/>
+                      </div>
+                    </div>
+
+                    
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="password" name="cpwd" id="password" class="form-control"  placeholder="Confirm Password*" required/>
+                      </div>
+                      <input type="checkbox" onclick="myFunction()">Show Password
+
+                      <button type="submit" class="btnRegister">Register</button>
+
+                      <script type="text/javascript">
+                      function myFunction() {
+                          var x = document.getElementById("password");
+                          if (x.type === "password") {
+                              x.type = "text";
+                                 } else {
+                                 x.type = "password";
+                                  }
+                                }
+                      </script>
+                    </div>
+                    
+                  </div>
+                </form>
+
+              </div>
+
+              <!-- Login Form -->
+              <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <h3  class="register-heading">Student Login</h3>
+                
+                <form action="{% url 'login' %}" method="post" > {% csrf_token %}
+                  <div class="row register-form">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Id" name="email" id="lemail" required/>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password *" required/>
+                      </div>
+                      <input type="checkbox" onclick="myFunction()">Show Password
+                      <script type="text/javascript">
+                        function myFunction() {
+                            var x = document.getElementById("pwd");
+                            if (x.type === "password") {
+                                x.type = "text";
+                                   } else {
+                                   x.type = "password";
+                                    }
+                                  }
+                        </script>
+                 
+                        <button type="submit" class="btnRegister">Login</button>
+
+                    </div>
+                  </div>
+                </form>
+
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- User Messages -->
+
+    
+
+    
+  </div>
+</div>
+<!-- Optional JavaScript; choose one of the two! -->
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

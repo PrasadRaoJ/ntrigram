@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Circliful JS -->
+<script src="{% static 'js/circliful.min.js' %}"></script>
+<script src="{% static 'js/circliful.custom.js' %}"></script>
+<script src="{% static 'js/circliful.js' %}"></script>
+
+
+
+
+      <!-- Content wrapper start -->
+<div class="content-wrapper">
+  <!-- Row start -->
+      <div class="row gutters">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <!-- BEGIN .Custom-header -->
+        <header class="custom-banner" style="background-color: rgb(255, 255, 229);">
+              
+            <div class="row gutters">
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
+                  
+                  <div class="welcome-msg">
+                    <div class="welcome-user-thumb"> <img src="{% static 'images/bt3.png' %}" alt='Retail Admin' /> </div>
+                    <div class="welcome-title text-primary"><strong>{{request.user.first_name}}</strong></div>
+                    <!-- <div class="welcome-designation"> B.Tech - Computer Science and Engineering </div> -->
+                    <div class="welcome-email text-success">{{request.user.email}} </div>
+                    <!-- <a href="profile.html" class="btn btn-danger btn-sm"></a> </div> -->
+                  </div>
+                </div>
+
+            </div>
+
+        
+        {% if high_chances %}
+            
+        
+            
+        <!-- CARD -->
+        
+<!-- CARD BODY -->
+
+<h3 class='text-center'> Your Highest Chances</h3>
+<div class="card-group">
+   
+    {% for clg, score,c_id  in high_chances  %}
+    <div class="card">
+      <div class="card-body">
+            <div class="progress mx-auto" data-value='{{score}}'>
+                <span class="progress-left">
+                    <span class="progress-bar border-primary"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar border-primary"></span>
+                 </span>
+                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                    <div class="h2 font-weight-bold">{{score}}<sup class="small">%</sup></div>
+                </div>
+            </div>
+      </div>
+
+      <div class="card-body">
+            <h5 class="card-title  margin-absolute">{{clg}}</h5>
+       </div>
+
+      <div class="card-body">
+            <button class="btn btn-info card-title"><a href="/college/{{c_id}}&{{score}}/" class="text-light">Details</a></button>
+       </div>
+    </div>  
+    {% endfor %}
+
+
+  </div>    
+
+
+
+<hr>
+<br>
+
+<h3 class='text-center'> Your Lowest Chances</h3>
+  <div class="card-group">
+
+    {% for clg, score,c_id  in low_chances  %}
+    <div class="card" id="card_2"> 
+      <div class="card-body">
+            <div class="progress mx-auto" data-value='{{score}}'>
+                <span class="progress-left">
+                    <span class="progress-bar border-dark"></span>
+                </span>
+                <span class="progress-right">
+                    <span class="progress-bar border-dark"></span>
+                 </span>
+                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                    <div class="h2 font-weight-bold">{{score}}<sup class="small">%</sup></div>
+                </div>
+            </div>
+      </div>
+
+      <div class="card-body">
+            <h5 class="card-title  margin-absolute">{{clg}}</h5>
+       </div>
+
+      <div class="card-body">
+            <button class="btn btn-warning card-title"><a href="/college/{{c_id}}&{{score}}/" class="text-light">Details</a></button>
+       </div>
+    </div>  
+    {% endfor %}
+
+
+    {% else %}
+
+        <strong class="text-center  text-light text-underline">{{message}} Please fill the form, 
+        <a href="{% url 'userform' %}"><u>Click Here</u></a></strong>
+
+    {% endif %}
+
+
+
+        </div>
+
+    </header>
+</div>
+</div>
+</div>
+
+
+                <style type="text/css">
+                    /*
+                  *
+                  * ==========================================
+                  * CUSTOM UTIL CLASSES
+                  * ==========================================
+                  *
+                  */
+                  
+                  .progress {
+                    width: 150px;
+                    height: 150px;
+                    background: none;
+                    position: relative;
+                  }
+                  
+                  .progress::after {
+                    content: "";
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    border: 6px solid #eee;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                  }
+                  
+                  .progress>span {
+                    width: 50%;
+                    height: 100%;
+                    overflow: hidden;
+                    position: absolute;
+                    top: 0;
+                    z-index: 1;
+                  }
+                  
+                  .progress .progress-left {
+                    left: 0;
+                  }
+                  
+                  .progress .progress-bar {
+                    width: 100%;
+                    height: 100%;
+                    background: none;
+                    border-width: 6px;
+                    border-style: solid;
+                    position: absolute;
+                    top: 0;
+                  }
+                  
+                  .progress .progress-left .progress-bar {
+                    left: 100%;
+                    border-top-right-radius: 80px;
+                    border-bottom-right-radius: 80px;
+                    border-left: 0;
+                    -webkit-transform-origin: center left;
+                    transform-origin: center left;
+                  }
+                  
+                  .progress .progress-right {
+                    right: 0;
+                  }
+                  
+                  .progress .progress-right .progress-bar {
+                    left: -100%;
+                    border-top-left-radius: 80px;
+                    border-bottom-left-radius: 80px;
+                    border-right: 0;
+                    -webkit-transform-origin: center right;
+                    transform-origin: center right;
+                  }
+                  
+                  .progress .progress-value {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                  }
+                  
+                  /*
+                  *
+                  * ==========================================
+                  * FOR DEMO PURPOSE
+                  * ==========================================
+                  *
+                  */
+                  
+                  /* body {
+                    background: #ff7e5f; 
+                    background: -webkit-linear-gradient(to right, #ff7e5f, #feb47b);
+                    background: linear-gradient(to right, #ff7e5f, #feb47b);
+                    min-height: 100vh;
+                  } */
+                  
+                  body {
+                    /* background: #C02425; 
+                    background: -webkit-linear-gradient(to right, #C02425, #F0CB35);
+                    background: linear-gradient(to right,  #C02425,  #F0CB35);
+                    min-height: 100vh; */
+                    background-color: rgb(255, 255, 255);
+                  }
+                  
+                  .rounded-lg {
+                    border-radius: 1rem;
+                  }
+                  
+                  .text-gray {
+                    color: #aaa;
+                  }
+                  
+                  div.h4 {
+                    line-height: 1rem;
+                  }
+                  
+                  
+                </style>
+
+                
+                <!-- Circle Script -->
+                
+                        
+                <script type="text/javascript">
+                  
+                  
+                    $(function() {
+                  
+                  $(".progress").each(function() {
+                  
+                    var value = $(this).attr('data-value');
+                    var left = $(this).find('.progress-left .progress-bar');
+                    var right = $(this).find('.progress-right .progress-bar');
+                  
+                    if (value > 0) {
+                      if (value <= 50) {
+                        right.css('transform', 'rotate(' + percentageToDegrees(value) + 'deg)')
+                      } else {
+                        right.css('transform', 'rotate(180deg)')
+                        left.css('transform', 'rotate(' + percentageToDegrees(value - 50) + 'deg)')
+                      }
+                    }
+                  
+                  })
+                  
+                  function percentageToDegrees(percentage) {
+                  
+                    return percentage / 100 * 360
+                  
+                  }
+                  
+                  });
+                  
+                    
+                </script>
+
+             
+            <!-- END: .Custom-header -->
+    
+
+
+
+
+<style>
+@media only screen and (max-width: 600px){
+#topid {
+    background: linear-gradient(278deg, rgba(1, 22, 97, 1) 0%, rgba(0, 9, 41, 1) 100%);
+    height: 250px;
+}}
+
+.card {
+    background: linear-gradient(278deg, rgb(188, 240, 208) 0%, rgb(188, 240, 208) 100%);
+    height: auto;
+}
+
+
+#card_2 {
+    background: linear-gradient(278deg, rgb(255, 201, 185) 0%, rgb(255, 201, 185) 100%);
+    height: auto;
+}
+</style>
+
+
+
+{% endblock content %}

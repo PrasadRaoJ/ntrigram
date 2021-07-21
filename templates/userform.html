@@ -1,0 +1,788 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+
+{% if messages %}     
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+  {% for msg in messages %}
+  <p>{{msg}}</p> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {% endfor %}
+
+  <script type="text/javascript">
+      $('.alert').alert()
+  </script>
+
+</div>
+{% endif %}
+
+
+
+{% if college_data %}
+<div class="step-inner-content clearfix position-relative"> <span class="bg-shape"></span>
+  
+  <form class="multisteps-form__form" action="{% url 'userform' %}" method="post"> {% csrf_token %}
+  <div class="form-area position-relative">
+    <!-- step 1 -->
+    <div class="multisteps-form__panel js-active scaleIn">
+      <div class="wizard-forms form-step-2">
+        <div class="wizard-inner-box">
+          <div class="inner-title text-center">
+            <h2>Personal Information</h2>
+            <p> Let's help us to get the Good..!</p>
+            
+           
+              
+          </div>
+        </div>
+        <div class="details-form-area">
+          <div class="row">
+            
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="gender">
+                  {% if college_data.gender %}
+
+                            {{ college_data.gender}}
+
+                            {% else %}
+                  <option selected>Select Gender</option>
+                  {% endif %}
+                  <option value="0">Male</option>
+                  <option value="0">Female</option>
+                </select>
+
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="hs_loc">
+                  <option selected>
+                    {% if college_data.school_location %}
+                                    
+                                {{ college_data.school_location}}
+
+                                {% else %}
+                                
+                                Select City</option>
+                                {% endif %}
+                            <option value="0" >Alabama</option>
+                            <option value="1">Alaska</option>
+                            <option value="2">Arizona</option>
+                            <option value="3">Arkansas</option>
+                            <option value="4">California</option>
+                            <option value="5">Colorado</option>
+                            <option value="6">Connecticut</option>
+                            <option value="7">Delaware</option>
+                            <option value="8">District of Columbia</option>
+                            <option value="9">Florida</option>
+                            <option value="10">Georgia</option>
+                            <option value="11">Guam</option>
+                            <option value="12">Hawaii</option>
+                            <option value="13">Idaho</option>
+                            <option value="14">Illinois</option>
+                            <option value="15">Indiana</option>
+                            <option value="16">Iowa</option>
+                            <option value="17">Kansas</option>
+                            <option value="18">Kentucky</option>
+                            <option value="19">Louisiana</option>
+                            <option value="20">Maine</option>
+                            <option value="21">Maryland</option>
+                            <option value="22">Massachusetts</option>
+                            <option value="23">Michigan</option>
+                            <option value="24">Minnesota</option>
+                            <option value="25">Mississippi</option>
+                            <option value="26">Missouri</option>
+                            <option value="27">Montana</option>
+                            <option value="28">Nebraska</option>
+                            <option value="29">Nevada</option>
+                            <option value="30">New Hampshire</option>
+                            <option value="31">New Jersey</option>
+                            <option value="32">New Mexico</option>
+                            <option value="33">New York</option>
+                            <option value="34">North Carolina</option>
+                            <option value="35">North Dakota</option>
+                            <option value="36">Ohio</option>
+                            <option value="37">Oklahoma</option>
+                            <option value="38">Oregon</option>
+                            <option value="39">Other</option>
+                            <option value="40">Pennsylvania</option>
+                            <option value="41">Puerto Rico</option>
+                            <option value="42">Rhode Island</option>
+                            <option value="43">South Carolina</option>
+                            <option value="44">South Dakota</option>
+                            <option value="45">Tennessee</option>
+                            <option value="46">Texas</option>
+                            <option value="47">Utah</option>
+                            <option value="48">Vermont</option>
+                            <option value="49">Virgin Islands</option>
+                            <option value="50">Virginia</option>
+                            <option value="51">Washington</option>
+                            <option value="52">West Virginia</option>
+                            <option value="53">Wisconsin</option>
+                            <option value="54">Wyoming</option>
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="hs_type">
+                  <option selected>
+                    {% if college_data.school_type %}
+                                    
+                                {{ college_data.school_type}}
+
+                                {% else %}
+                    Select High School Type</option>
+                    {% endif %}
+                <option value="0">Home-Schooled</option>
+                <option value="1">Parochial</option>
+                <option value="2">Private</option>
+                <option value="3">Public</option> >
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="ib_candidate">
+                  <option selected> 
+                    {% if college_data.is_ib_candidate %}
+                        {{college_data.is_ib_candidate}}
+
+                            {% else %}
+                            
+                            Are you a IB Candidate</option> 
+                            {% endif %}    
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="ethnicity">
+                  <option selected>
+                    {% if college_data.ethnicity %}
+                    {{college_data.ethnicity}}
+                        
+                    {% else %}
+
+                    Choose your Ethnicity</option>
+                    {% endif %}
+                <option value="0">African</option>
+                <option value="1">American</option>
+                <option value="2">Asian</option>
+                <option value="3">Black</option>
+                <option value="4">Caucacian</option>
+                <option value="5">European</option>
+                <option value="6">Hispanic</option>
+                <option value="7">Jewish</option>
+                <option value="8">Middle East</option>
+                <option value="9">Others</option>
+                <option value="10">Pacific Islander</option>
+                <option value="11">Russia</option>
+                <option value="12">South American</option>
+                <option value="13">White</option>  
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-flag-checkered"></i> </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="major">
+                  <option selected>
+                    {% if college_data.major %}
+                        
+                    {{ college_data.major}}
+
+                    {% else %}
+                        
+                    Choose your Major</option>
+                    {% endif %}
+                    
+                <option value="0">Arts and Humanities</option>
+                <option value="1">Business</option>
+                <option value="2">Health and Medicine</option>
+                <option value="3">Multi Interdisciplinary Studies</option>
+                <option value="4">Others</option>
+                <option value="5">Public and Social Services</option>
+                <option value="6">Science Math and Technology</option>
+                <option value="7">Social Sciences</option>
+                <option value="8">Trades Personal Services</option>
+                <option value="9">Undecided</option>
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-flag-checkered"></i> </div>
+              </div>
+            </div>
+            <div class="input-filed-innerbox">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-input-inner select-option-area position-relative">
+                        <select name="class_rank">
+                          <option selected>
+                            {% if college_data.class_rank %}
+
+                    {{ college_data.class_rank}}
+
+                    {% else %}
+                        
+                    Choose your Class Rank</option>
+                    {% endif %}
+                        <option value="0">Top 10%</option>
+                        <option value="2">Top 25%</option>
+                        <option value="3">Top 50%</option>
+                        <option value="4">Top 75%</option>
+                        <option value="1">Top 100%</option>
+                        </select>
+                        <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-input-inner position-relative has-float-label">
+                        <input type="text" value="{{college_data.passout_year}}" name="year" placeholder="Enter Passout Year" class="form-control">
+                        <label>Enter Passout Year</label>
+                        <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-input-inner position-relative has-float-label">
+                        <input type="text" name="gpa_w" placeholder="Enter you Weighted GPA" value="{{college_data.weighted_gpa}}" class="form-control">
+                        <label>Enter you Weighted GPA </label>
+                        <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="wizard-inner-box">
+          <div class="inner-title text-center">
+            <h2>Course subjects completion & Honors</h2>
+          </div>
+        </div>
+        <div class="details-form-area">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sub_eng_h}}" name="sub_eng_h" placeholder="Enter English Subject Honors (0-5)" class="form-control">
+                <label>Enter English Subject Honors (0-5) </label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sub_mat_h}}" name="sub_mat_h" placeholder="Enter Maths Subject Honors (0-5)" class="form-control">
+                <label>Enter Maths Subject Honors (0-5)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sub_sci_h}}"  name="sub_sci_h" placeholder="Enter Science Subject Honors (0-5)" class="form-control">
+                <label>Enter Science Subject Honors (0-5)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sub_oth_h}}" name="sub_oth_h" placeholder="Enter Language other than English Subject Honors (0-5)" class="form-control">
+                <label>Enter Language other than English Subject Honors (0-5)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sub_hist_h}}" name="sub_hist_h" placeholder="Enter History/Social Studies Subject Honors (0-5)" class="form-control">
+                <label>Enter History/Social Studies Subject Honors (0-5)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sub_arts_h}}" name="sub_arts_h" placeholder="Enter Visual & Performing Arts Subject Honors (0-5)" class="form-control">
+                <label>Enter Visual & Performing Arts Subject Honors (0-5) </label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sub_ele_h}}" name="sub_ele_h" placeholder="Enter Academic Electives Subject Honors (0-5)" class="form-control">
+                <label>Enter Academic Electives Subject Honors (0-5) </label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+        <div class="wizard-inner-box">
+          <div class="inner-title text-center">
+            <h2>SAT Scores & ACT Scores</h2>
+          </div>
+        </div>
+        <div class="details-form-area">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="sat_scores_from">
+                  <option selected>
+                    {% if college_data.sat_scores_from %}
+                                
+                                {{ college_data.sat_scores_from}}
+
+                            {% else %}
+
+                            SAT Scores From</option>
+                            {% endif %}
+
+                <option value="0">Multiple Tests</option>
+                <option value="1">Single Test</option>
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sat_math}}" name="sat_math" placeholder="Enter SAT Math Score (Eg:700)" class="form-control">
+                <label>Enter SAT Math Score (Eg:700)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sat_ebread}}" name="sat_ebread" placeholder="Enter Evidence-Based Reading & Writing Score (Eg:650)" class="form-control">
+                <label>Enter Evidence-Based Reading & Writing Score (Eg:650)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.sat_wrt_lng}}"  name="sat_wrt_lng" placeholder="Enter Writing & Language Test (Eg:500)" class="form-control">
+                <label>Enter Writing & Language Test (Eg:500)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input type="text" value="{{college_data.act_comp}}" name="act_comp" placeholder="Enter Composite Score (Eg:36)" class="form-control">
+                <label>Enter Composite Score (Eg:36)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+        <div class="actions">
+          <ul>
+            <li>
+              <button type="submit"><span class="js-btn-next" title="NEXT">Submit </span></button>
+            </li>
+          </ul>
+        </div>
+        <div class="bottom-vector position-absolute"> <img src="{% static 'images/sd1.png' %}" alt=""> </div>
+      </div>
+    </div>
+    <!-- step 2 -->
+    <!-- step 3 -->
+  </div>
+</form>
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+{% else %}
+
+
+
+<div class="step-inner-content clearfix position-relative"> <span class="bg-shape"></span>
+  
+  <form class="multisteps-form__form" action="{% url 'userform' %}" method="post"> {% csrf_token %}
+  <div class="form-area position-relative">
+    <!-- step 1 -->
+    <div class="multisteps-form__panel js-active scaleIn">
+      <div class="wizard-forms form-step-2">
+        <div class="wizard-inner-box">
+          <div class="inner-title text-center">
+            <h2>Personal Information</h2>
+            <p> Let's help us to get the Good..!</p>
+            
+           
+              
+          </div>
+        </div>
+        <div class="details-form-area">
+          <div class="row">
+            
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="gender">
+                 
+                  <option selected>Select Gender</option>
+                  
+                  <option value="0">Male</option>
+                  <option value="0">Female</option>
+                </select>
+
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="hs_loc">
+                  <option selected>
+               
+                                
+                                Select City</option>
+                                
+                            <option value="0" >Alabama</option>
+                            <option value="1">Alaska</option>
+                            <option value="2">Arizona</option>
+                            <option value="3">Arkansas</option>
+                            <option value="4">California</option>
+                            <option value="5">Colorado</option>
+                            <option value="6">Connecticut</option>
+                            <option value="7">Delaware</option>
+                            <option value="8">District of Columbia</option>
+                            <option value="9">Florida</option>
+                            <option value="10">Georgia</option>
+                            <option value="11">Guam</option>
+                            <option value="12">Hawaii</option>
+                            <option value="13">Idaho</option>
+                            <option value="14">Illinois</option>
+                            <option value="15">Indiana</option>
+                            <option value="16">Iowa</option>
+                            <option value="17">Kansas</option>
+                            <option value="18">Kentucky</option>
+                            <option value="19">Louisiana</option>
+                            <option value="20">Maine</option>
+                            <option value="21">Maryland</option>
+                            <option value="22">Massachusetts</option>
+                            <option value="23">Michigan</option>
+                            <option value="24">Minnesota</option>
+                            <option value="25">Mississippi</option>
+                            <option value="26">Missouri</option>
+                            <option value="27">Montana</option>
+                            <option value="28">Nebraska</option>
+                            <option value="29">Nevada</option>
+                            <option value="30">New Hampshire</option>
+                            <option value="31">New Jersey</option>
+                            <option value="32">New Mexico</option>
+                            <option value="33">New York</option>
+                            <option value="34">North Carolina</option>
+                            <option value="35">North Dakota</option>
+                            <option value="36">Ohio</option>
+                            <option value="37">Oklahoma</option>
+                            <option value="38">Oregon</option>
+                            <option value="39">Other</option>
+                            <option value="40">Pennsylvania</option>
+                            <option value="41">Puerto Rico</option>
+                            <option value="42">Rhode Island</option>
+                            <option value="43">South Carolina</option>
+                            <option value="44">South Dakota</option>
+                            <option value="45">Tennessee</option>
+                            <option value="46">Texas</option>
+                            <option value="47">Utah</option>
+                            <option value="48">Vermont</option>
+                            <option value="49">Virgin Islands</option>
+                            <option value="50">Virginia</option>
+                            <option value="51">Washington</option>
+                            <option value="52">West Virginia</option>
+                            <option value="53">Wisconsin</option>
+                            <option value="54">Wyoming</option>
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="hs_type">
+                  <option selected>
+                    
+
+                                
+                    Select High School Type</option>
+                    
+                <option value="0">Home-Schooled</option>
+                <option value="1">Parochial</option>
+                <option value="2">Private</option>
+                <option value="3">Public</option> >
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="ib_candidate">
+                  <option selected> 
+                   
+
+                            
+                            
+                            Are you a IB Candidate</option> 
+                               
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="ethnicity">
+                  <option selected>
+
+                    Choose your Ethnicity</option>
+                    
+                <option value="0">African</option>
+                <option value="1">American</option>
+                <option value="2">Asian</option>
+                <option value="3">Black</option>
+                <option value="4">Caucacian</option>
+                <option value="5">European</option>
+                <option value="6">Hispanic</option>
+                <option value="7">Jewish</option>
+                <option value="8">Middle East</option>
+                <option value="9">Others</option>
+                <option value="10">Pacific Islander</option>
+                <option value="11">Russia</option>
+                <option value="12">South American</option>
+                <option value="13">White</option>  
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-flag-checkered"></i> </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="major">
+                  <option selected>
+                   
+                        
+                    Choose your Major</option>
+            
+                    
+                <option value="0">Arts and Humanities</option>
+                <option value="1">Business</option>
+                <option value="2">Health and Medicine</option>
+                <option value="3">Multi Interdisciplinary Studies</option>
+                <option value="4">Others</option>
+                <option value="5">Public and Social Services</option>
+                <option value="6">Science Math and Technology</option>
+                <option value="7">Social Sciences</option>
+                <option value="8">Trades Personal Services</option>
+                <option value="9">Undecided</option>
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-flag-checkered"></i> </div>
+              </div>
+            </div>
+            <div class="input-filed-innerbox">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-input-inner select-option-area position-relative">
+                        <select name="class_rank">
+                          <option selected>
+                     
+                        
+                    Choose your Class Rank</option>
+                 
+                        <option value="0">Top 10%</option>
+                        <option value="2">Top 25%</option>
+                        <option value="3">Top 50%</option>
+                        <option value="4">Top 75%</option>
+                        <option value="1">Top 100%</option>
+                        </select>
+                        <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-input-inner position-relative has-float-label">
+                        <input  required type="text" value="{{college_data.passout_year}}" name="year" placeholder="Enter Passout Year" class="form-control">
+                        <label>Enter Passout Year</label>
+                        <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-input-inner position-relative has-float-label">
+                        <input  required type="text" name="gpa_w" placeholder="Enter you Weighted GPA" value="{{college_data.weighted_gpa}}" class="form-control">
+                        <label>Enter you Weighted GPA </label>
+                        <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="wizard-inner-box">
+          <div class="inner-title text-center">
+            <h2>Course subjects completion & Honors</h2>
+          </div>
+        </div>
+        <div class="details-form-area">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input  required type="text" value="{{college_data.sub_eng_h}}" name="sub_eng_h" placeholder="Enter English Subject Honors (0-5)" class="form-control">
+                <label>Enter English Subject Honors (0-5) </label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input  required type="text" value="{{college_data.sub_mat_h}}" name="sub_mat_h" placeholder="Enter Maths Subject Honors (0-5)" class="form-control">
+                <label>Enter Maths Subject Honors (0-5)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input  required type="text" value="{{college_data.sub_sci_h}}"  name="sub_sci_h" placeholder="Enter Science Subject Honors (0-5)" class="form-control">
+                <label>Enter Science Subject Honors (0-5)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-input-inner position-relative has-float-label">
+                <input required  type="text" value="{{college_data.sub_oth_h}}" name="sub_oth_h" placeholder="Enter Language other than English Subject Honors (0-5)" class="form-control">
+                <label>Enter Language other than English Subject Honors (0-5)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-input-inner position-relative has-float-label">
+                <input  required type="text" value="{{college_data.sub_hist_h}}" name="sub_hist_h" placeholder="Enter History/Social Studies Subject Honors (0-5)" class="form-control">
+                <label>Enter History/Social Studies Subject Honors (0-5)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-input-inner position-relative has-float-label">
+                <input  required type="text" value="{{college_data.sub_arts_h}}" name="sub_arts_h" placeholder="Enter Visual & Performing Arts Subject Honors (0-5)" class="form-control">
+                <label>Enter Visual & Performing Arts Subject Honors (0-5) </label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-input-inner position-relative has-float-label">
+                <input  required type="text" value="{{college_data.sub_ele_h}}" name="sub_ele_h" placeholder="Enter Academic Electives Subject Honors (0-5)" class="form-control">
+                <label>Enter Academic Electives Subject Honors (0-5) </label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+        <div class="wizard-inner-box">
+          <div class="inner-title text-center">
+            <h2>SAT Scores & ACT Scores</h2>
+          </div>
+        </div>
+        <div class="details-form-area">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-input-inner select-option-area position-relative">
+                <select name="sat_scores_from">
+                  <option selected>
+                 
+
+                            SAT Scores From</option>
+                         
+
+                <option value="0">Multiple Tests</option>
+                <option value="1">Single Test</option>
+                </select>
+                <div class="icon-bg text-center"> <i class="fas fa-handshake"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input  required type="text" value="{{college_data.sat_math}}" name="sat_math" placeholder="Enter SAT Math Score (Eg:700)" class="form-control">
+                <label>Enter SAT Math Score (Eg:700)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input  required  type="text" value="{{college_data.sat_ebread}}" name="sat_ebread" placeholder="Enter Evidence-Based Reading & Writing Score (Eg:650)" class="form-control">
+                <label>Enter Evidence-Based Reading & Writing Score (Eg:650)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input required type="text" value="{{college_data.sat_wrt_lng}}"  name="sat_wrt_lng" placeholder="Enter Writing & Language Test (Eg:500)" class="form-control">
+                <label>Enter Writing & Language Test (Eg:500)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-input-inner position-relative has-float-label">
+                <input required type="text" value="{{college_data.act_comp}}" name="act_comp" placeholder="Enter Composite Score (Eg:36)" class="form-control">
+                <label>Enter Composite Score (Eg:36)</label>
+                <div class="icon-bg text-center"> <i class="fas fa-user"></i> </div>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+        <div class="actions">
+          <ul>
+            <li>
+              <button type="submit"><span class="js-btn-next" title="NEXT">Submit </span></button>
+            </li>
+          </ul>
+        </div>
+        <div class="bottom-vector position-absolute"> <img src="{% static 'images/sd1.png' %}" alt=""> </div>
+      </div>
+    </div>
+    <!-- step 2 -->
+    <!-- step 3 -->
+  </div>
+</form>
+</div>
+
+
+
+</div>
+</div>
+</div>
+{% endif %}
+{% endblock content %}

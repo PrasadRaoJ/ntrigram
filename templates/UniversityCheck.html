@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+<!-- Chart Js -->
+{% load static %}
+{% block content %}
+  
+
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+#chartdiv1 {
+  width: 100%;
+  height: 500px;
+}
+.custom-banner:before{background:none;}
+.custom-banner {
+    background-color: #dcd267;}
+</style>
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+
+	  
+	  
+      <!-- Content wrapper start -->
+      <div class="content-wrapper">
+        <!-- Row start -->
+        <h2>You are looking for "{{college}}"</h2>
+        <div class="row gutters">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <!-- BEGIN .Custom-header -->
+            <header class="custom-banner">
+              
+              <div class="row gutters">
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+				 
+					  
+                  <div style="width: 100%;">
+                      <div style="width: 45%; float: left;"> 
+                           <div id="circle"></div>
+                       <span>Your Fair Chances: {{score}} </span>
+                    
+                      </div>
+                      
+                      
+                    
+                    <div style="margin-left: 55%;"> 
+                      {% if new_score %}
+                           <div id="circle_2"></div>
+                       <span>Updated Score: {{new_score}} </span>
+                       {% endif %}
+                    </div>
+                  </div>
+
+                  
+
+                </div>
+
+<!-- Here start the drag grap -->
+					  
+					  
+<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     
+					 <!-- HTML -->
+  <span class="text-center">SAT SUBJECT HONORS</span>
+	
+  <form class="form" method="POST" action="">	{% csrf_token %}		
+	 
+    <input type="range" id="myRange"  max="5" name="sub_sci_h" value="{{sat_sci}}">
+    <div id="rangeValue">{{sat_sci}} Science</div> 
+	 
+	  
+	 <input type="range" id="myRange1"  max="5" name="sub_mat_h" value="{{sat_math}}">
+    <div id="rangeValue1"> {{sat_math}} Maths</div>
+
+ 
+	 <input type="range" id="myRange2"  max="5" name="sub_hist_h" value="{{sat_hist}}">
+    <div id="rangeValue2"> {{sat_hist}} History</div>
+
+ 
+	 <input type="range" id="myRange3"  max="5" name="sub_arts_h" value="{{sat_art}}">
+    <div id="rangeValue3">{{sat_art}} Arts</div>
+
+ 
+	  <input type="range" id="myRange4" max="5" name='sub_ele_h' value="{{sat_ele}}">
+    <div id="rangeValue4"> {{sat_ele}} Electives</div>
+
+    <input type="range" id="myRange4" max="5" name='sub_eng_h' value="{{sat_eng}}">
+    <div id="rangeValue4">{{sat_eng}} English</div>
+
+    <input type="range" id="myRange4" max="5" name='sub_oth_h' value="{{sat_oth}}">
+    <div id="rangeValue4">{{sat_oth}} Other Subject</div>
+
+    <input type="hidden" name='c_id' value="{{c_id}}">
+
+		<button type='submit' class="btn btn-primary">Update</button>
+  
+  </form>
+</div>
+               
+                  
+				   <!-- Here END the drag grap -->
+				  
+				  
+				  
+				   <!-- Here start the Chart grap -->
+		
+	 <div id="chartdiv1"></div>
+
+	  <!-- Here start the Chart grap -->
+				  
+    </div>
+
+  </header>
+			
+            <!-- END: .Custom-header -->
+          </div>
+        </div>
+        
+      </div>
+      <!-- Content wrapper end -->
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+
+
+<style>
+#chartdiv button, input, optgroup, select, textarea{width:100%;}
+@media only screen and (max-width: 600px){
+#topid {
+    background: linear-gradient(278deg, rgba(1, 22, 97, 1) 0%, rgba(0, 9, 41, 1) 100%);
+    height: 250px;
+}}
+</style>
+<!-- Optional JavaScript; choose one of the two! -->
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+
+<!-- Circliful JS -->
+<script src="{% static 'js/circliful.min.js' %}"></script>
+<script src="{% static 'js/circliful.custom.js' %}"></script>
+<script src="{% static 'js/circliful.js' %}"></script>
+
+
+
+<!-- Chart code -->
+<script>
+
+ <!-- Here start the Chart grap Script -->
+
+$('#myRange, #rangeValue1, #rangeValue2, #rangeValue3, #rangeValue4').mousemove(function(){
+    $('#rangeValue').text($('#myRange').val() + " " + " Science");
+	 $('#rangeValue1').text($('#myRange1').val() + " " + " Maths");
+		    $('#rangeValue2').text($('#myRange2').val() + " " + " Computers");
+			    $('#rangeValue3').text($('#myRange3').val() + " " + " Scoial");
+				    $('#rangeValue4').text($('#myRange4').val() + " " + " Othere Subjects");   
+});
+
+
+ <!-- Here End the Chart grap script -->
+
+
+
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+var chart = am4core.create("chartdiv1", am4charts.XYChart3D);
+
+// Add data
+chart.data = [{
+  "country": "Maths",
+  "visits": "{{sat_math}}",
+
+}, {
+  "country": "Science",
+  "visits": "{{sat_sci}}",
+  
+}, {
+  "country": "History",
+  "visits": "{{sat_hist}}",
+}, {
+  "country": "Arts",
+  "visits": "{{sat_art}}",
+}, {
+  "country": "Electives",
+  "visits": "{{sat_ele}}",
+}, {
+  "country": "English",
+  "visits": '{{sat_eng}}',
+}, {
+  "country": "Other Languages",
+  "visits": '{{sat_oth}}',
+}];
+
+// Create axes
+let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "country";
+categoryAxis.renderer.labels.template.rotation = 270;
+categoryAxis.renderer.labels.template.hideOversized = false;
+categoryAxis.renderer.minGridDistance = 20;
+categoryAxis.renderer.labels.template.horizontalCenter = "right";
+categoryAxis.renderer.labels.template.verticalCenter = "middle";
+categoryAxis.tooltip.label.rotation = 270;
+categoryAxis.tooltip.label.horizontalCenter = "right";
+categoryAxis.tooltip.label.verticalCenter = "middle";
+
+let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.title.text = "Subject Marks";
+valueAxis.title.fontWeight = "bold";
+
+// Create series
+var series = chart.series.push(new am4charts.ColumnSeries3D());
+series.dataFields.valueY = "visits";
+series.dataFields.categoryX = "country";
+series.name = "Visits";
+series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+series.columns.template.fillOpacity = .8;
+
+var columnTemplate = series.columns.template;
+columnTemplate.strokeWidth = 2;
+columnTemplate.strokeOpacity = 1;
+columnTemplate.stroke = am4core.color("#FFFFFF");
+
+columnTemplate.adapter.add("fill", function(fill, target) {
+  return chart.colors.getIndex(target.dataItem.index);
+})
+
+columnTemplate.adapter.add("stroke", function(stroke, target) {
+  return chart.colors.getIndex(target.dataItem.index);
+})
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.lineX.strokeOpacity = 0;
+chart.cursor.lineY.strokeOpacity = 0;
+
+}); // end am4core.ready()
+</script>
+
+<script>
+  circliful.newCircle({
+  percent: "{{score}}",
+  id: 'circle',
+  type: 'simple',
+  backgroundCircleWidth: 10,
+  foregroundCircleWidth: 15,
+});
+
+circliful.newCircle({
+  percent: "{{new_score}}",
+  id: 'circle_2',
+  type: 'simple',
+  backgroundCircleWidth: 10,
+  foregroundCircleWidth: 15,
+  color: '#dcd267'
+});
+</script>
+
+
+
+{% endblock content %}
